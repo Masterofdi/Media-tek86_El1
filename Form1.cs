@@ -19,8 +19,9 @@ namespace Media_tek86
             string login = txt_Login.Text;
             string password = txt_Psw.Text;
 
-           
-            string connectionString = "server=localhost;database=media-tek86;uid=root;pwd='';";
+
+
+            string connectionString = "server=localhost;database=media-tek86;uid=HADES;pwd='SAYHELLO';";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
@@ -38,7 +39,7 @@ namespace Media_tek86
                         // Connexion OK → Ouvre Form2
                         Form2 mainApp = new Form2();
                         mainApp.Show();
-                        this.Hide(); // ou this.Close(); pour fermer la fenêtre de login
+                        this.Hide(); //  pour fermer la fenêtre de login
                     }
                     else
                     {

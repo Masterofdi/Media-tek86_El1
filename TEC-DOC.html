@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Documentation simplifiée – Media_tek86</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.5;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Media_tek86</h1>
+
+    <h2>Présentation générale</h2>
+    <p>
+        Media_tek86 est une application Windows Forms conçue pour gérer deux entités principales :
+        <strong>le personnel</strong> et leurs <strong>absences</strong>. Elle permet également d’afficher
+        le contenu de quelques tables annexes (responsable, motif, service) de manière générique.
+    </p>
+
+    <h2>Fonctionnalités principales</h2>
+    <ul>
+        <li>
+            <strong>Affichage de données</strong><br>
+            Sélection d’une table (personnel, absence, responsable, motif, service) pour afficher
+            toutes ses lignes dans une grille.
+        </li>
+        <li>
+            <strong>Ajout de personnel</strong><br>
+            Création d’un nouvel enregistrement dans la table <em>personnel</em> en saisissant nom,
+            prénom, service, e-mail et téléphone.
+        </li>
+        <li>
+            <strong>Modification</strong><br>
+            Mise à jour des informations existantes pour un employé ou une absence directement depuis
+            la grille ou via de petites boîtes de dialogue de saisie.
+        </li>
+        <li>
+            <strong>Suppression</strong><br>
+            Suppression d’un salarié ou d’une absence après confirmation de l’utilisateur.
+        </li>
+        <li>
+            <strong>Affichage générique</strong><br>
+            Consultation rapide du contenu des tables <em>responsable</em>, <em>motif</em> et
+            <em>service</em>, sans fonctionnalités CRUD spécifiques.
+        </li>
+    </ul>
+
+    <h2>Organisation du projet</h2>
+    <p>
+        L’application s’appuie sur une architecture en couches :
+    </p>
+    <ul>
+        <li>
+            <strong>IHM Windows Forms</strong><br>
+            Une seule fenêtre principale avec :
+            <ul>
+                <li>Un menu déroulant pour choisir la table à afficher.</li>
+                <li>Une grille (<code>DataGridView</code>) qui liste les enregistrements.</li>
+                <li>Des boutons « Ajouter », « Modifier » et « Supprimer » selon la table sélectionnée.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Couche Modèle</strong><br>
+            Des classes simples représentant un employé (<em>Personnel</em>) ou une absence
+            (<em>Absence</em>), sans logique métier complexe.
+        </li>
+        <li>
+            <strong>Couche Accès aux données (DAL)</strong><br>
+            Des classes spécialisées qui communiquent avec la base MySQL pour :
+            <ul>
+                <li>Récupérer toutes les lignes d’une table.</li>
+                <li>
+                    Créer, mettre à jour ou supprimer un enregistrement dans les tables
+                    <em>personnel</em> et <em>absence</em>.
+                </li>
+                <li>
+                    Lire le contenu de tables annexes (<em>responsable</em>, <em>motif</em>,
+                    <em>service</em>) de façon générique.
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Flux d’utilisation</h2>
+    <ol>
+        <li>Au démarrage, l’application affiche la liste des employés dans la grille.</li>
+        <li>L’utilisateur sélectionne une table dans le menu déroulant pour voir son contenu.</li>
+        <li>
+            Si la table est « personnel », il peut cliquer sur « Ajouter » pour créer un nouvel
+            employé, « Modifier » pour mettre à jour ses informations ou « Supprimer » pour le retirer.
+        </li>
+        <li>
+            Si la table est « absence », il peut cliquer sur « Modifier » ou « Supprimer » pour gérer
+            ces enregistrements.
+        </li>
+        <li>
+            Pour les tables « responsable », « motif » ou « service », la grille se contente d’afficher
+            toutes les lignes, sans bouton d’édition.
+        </li>
+    </ol>
+
+    <h2>Évolutions possibles</h2>
+    <ul>
+        <li>
+            Ajouter un formulaire dédié pour saisir/modifier plusieurs champs en une seule fois plutôt
+            que de petites boîtes de dialogue.
+        </li>
+        <li>
+            Ajouter une fonctionnalité « Créer une absence » en proposant de choisir un employé,
+            une plage de dates et un motif.
+        </li>
+        <li>Mettre en place un filtrage avancé (par service, par période d’absence). </li>
+        <li>Internationnaliser les textes via des ressources pour supporter plusieurs langues.</li>
+    </ul>
+</body>
+</html>
